@@ -1,6 +1,6 @@
 package org.vaadin.mvp.vaadinmvp.samples.crud;
 
-import org.vaadin.mvp.vaadinmvp.VaadinMVPUI;
+import org.vaadin.mvp.vaadinmvp.MainUI;
 import org.vaadin.mvp.vaadinmvp.samples.backend.DataService;
 import org.vaadin.mvp.vaadinmvp.samples.backend.data.Product;
 
@@ -27,7 +27,7 @@ public class SampleCrudLogic implements Serializable {
     public void init() {
         editProduct(null);
         // Hide and disable if not admin
-        if (!VaadinMVPUI.get().getAccessControl().isUserInRole("admin")) {
+        if (!MainUI.get().getAccessControl().isUserInRole("admin")) {
             view.setNewProductEnabled(false);
         }
 
@@ -51,7 +51,7 @@ public class SampleCrudLogic implements Serializable {
             fragmentParameter = productId;
         }
 
-        Page page = VaadinMVPUI.get().getPage();
+        Page page = MainUI.get().getPage();
         page.setUriFragment("!" + SampleCrudView.VIEW_NAME + "/"
                 + fragmentParameter, false);
     }
@@ -113,7 +113,7 @@ public class SampleCrudLogic implements Serializable {
     }
 
     public void rowSelected(Product product) {
-        if (VaadinMVPUI.get().getAccessControl().isUserInRole("admin")) {
+        if (MainUI.get().getAccessControl().isUserInRole("admin")) {
             view.editProduct(product);
         }
     }
